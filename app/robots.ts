@@ -1,0 +1,1 @@
+export default function robots(){return {rules:{userAgent:'*',allow:'/',disallow:['/api/','/*/ask','/*/profile','/*/settings','/*/bookmarks','/*/history','/*/admin','/*/login']},sitemap:'https://quranexa-ai.vs26bf9tsc.chatgpt.site/sitemap.xml'};}

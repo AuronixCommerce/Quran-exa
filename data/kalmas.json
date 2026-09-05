@@ -1,0 +1,74 @@
+[
+  {
+    "id": "kalma:1",
+    "kind": "kalma",
+    "title": "1. Tayyibah · طیبہ",
+    "arabic": "لَا إِلٰهَ إِلَّا الله مُحَمَّدٌ رَسُولُ الله",
+    "transliteration": "La ilaha illallah, Muhammadur rasulullah.",
+    "en": "None deserves worship except Allah; Muhammad is Allah’s messenger.",
+    "ur": "اللہ کے سوا کوئی عبادت کے لائق نہیں، محمد اللہ کے رسول ہیں۔",
+    "url": "/kalmas/1",
+    "sourceUrl": "https://alqurancompanion.com/guide-the-6-kalimas-of-islam-text-meaning",
+    "edition": "Traditional educational text; Quranexa meaning translation"
+  },
+  {
+    "id": "kalma:2",
+    "kind": "kalma",
+    "title": "2. Shahadah · شہادت",
+    "arabic": "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
+    "transliteration": "Ashhadu an la ilaha illallahu wahdahu la sharika lahu, wa ashhadu anna Muhammadan abduhu wa rasuluhu.",
+    "en": "I testify that only Allah deserves worship. He is One, without any partner. I also testify that Muhammad is His servant and His messenger.",
+    "ur": "میں گواہی دیتا ہوں کہ اللہ کے سوا کوئی عبادت کے لائق نہیں۔ وہ اکیلا ہے، اس کا کوئی شریک نہیں۔ اور میں گواہی دیتا ہوں کہ محمد اس کے بندے اور رسول ہیں۔",
+    "url": "/kalmas/2",
+    "sourceUrl": "https://alqurancompanion.com/guide-the-6-kalimas-of-islam-text-meaning",
+    "edition": "Traditional educational text; Quranexa meaning translation"
+  },
+  {
+    "id": "kalma:3",
+    "kind": "kalma",
+    "title": "3. Tamjid · تمجید",
+    "arabic": "سُبْحَانَ اللهِ وَالْحَمْدُ للهِ وَلَا إِلٰهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ الْعَلِيِّ الْعَظِيمِ",
+    "transliteration": "Subhanallahi walhamdu lillahi wa la ilaha illallahu wallahu akbar. Wa la hawla wa la quwwata illa billahil aliyyil azim.",
+    "en": "Allah is free of imperfection, and all praise belongs to Him. Only Allah deserves worship, and Allah is greatest. Strength and the ability to act come only through Allah, the Most High, the Magnificent.",
+    "ur": "اللہ پاک ہے، سب تعریف اللہ کے لیے ہے، اللہ کے سوا کوئی عبادت کے لائق نہیں اور اللہ سب سے بڑا ہے۔ بلندی اور عظمت والے اللہ کی مدد کے بغیر نہ کوئی طاقت ہے نہ قوت۔",
+    "url": "/kalmas/3",
+    "sourceUrl": "https://alqurancompanion.com/guide-the-6-kalimas-of-islam-text-meaning",
+    "edition": "Traditional educational text; Quranexa meaning translation"
+  },
+  {
+    "id": "kalma:4",
+    "kind": "kalma",
+    "title": "4. Tawhid · توحید",
+    "arabic": "لَا إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، يُحْيِي وَيُمِيتُ وَهُوَ حَيٌّ لَا يَمُوتُ، بِيَدِهِ الْخَيْرُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+    "transliteration": "La ilaha illallahu wahdahu la sharika lahu. Lahul mulku wa lahul hamd. Yuhyi wa yumitu wa huwa hayyun la yamut. Biyadihil khayru wa huwa ala kulli shay'in qadir.",
+    "en": "Only Allah deserves worship. He is One and has no partner. Sovereignty and praise belong to Him. He grants life and causes death, while He is ever-living and does not die. All goodness is in His hand, and He has power over everything.",
+    "ur": "اللہ کے سوا کوئی عبادت کے لائق نہیں۔ وہ اکیلا ہے، اس کا کوئی شریک نہیں۔ بادشاہی اور تعریف اسی کے لیے ہیں۔ وہ زندگی دیتا اور موت دیتا ہے، اور وہ زندہ ہے، اسے موت نہیں آتی۔ بھلائی اسی کے ہاتھ میں ہے اور وہ ہر چیز پر قدرت رکھتا ہے۔",
+    "url": "/kalmas/4",
+    "sourceUrl": "https://alqurancompanion.com/guide-the-6-kalimas-of-islam-text-meaning",
+    "edition": "Traditional educational text; Quranexa meaning translation"
+  },
+  {
+    "id": "kalma:5",
+    "kind": "kalma",
+    "title": "5. Istighfar · استغفار",
+    "arabic": "أَسْتَغْفِرُ اللهَ رَبِّي مِنْ كُلِّ ذَنْبٍ أَذْنَبْتُهُ عَمْدًا أَوْ خَطَأً، سِرًّا أَوْ عَلَانِيَةً، وَأَتُوبُ إِلَيْهِ مِنَ الذَّنْبِ الَّذِي أَعْلَمُ، وَمِنَ الذَّنْبِ الَّذِي لَا أَعْلَمُ، إِنَّكَ أَنْتَ عَلَّامُ الْغُيُوبِ، وَغَفَّارُ الذُّنُوبِ، وَسَتَّارُ الْعُيُوبِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ الْعَلِيِّ الْعَظِيمِ",
+    "transliteration": "Astaghfirullaha rabbi min kulli dhanbin adhnabtuhu amdan aw khata'an, sirran aw alaniyatan. Wa atubu ilayhi minadh dhanbilladhi a'lamu wa minadh dhanbilladhi la a'lamu. Innaka anta allamul ghuyubi wa ghaffarudh dhunubi wa sattarul uyubi. Wa la hawla wa la quwwata illa billahil aliyyil azim.",
+    "en": "I ask Allah, my Lord, to forgive every sin I have committed, deliberately or by mistake, privately or openly. I turn to Him in repentance for sins I know of and those I do not. You know all that is hidden, repeatedly forgive sins, and conceal faults. Strength and the ability to act come only through Allah, the Most High, the Magnificent.",
+    "ur": "میں اپنے رب اللہ سے ہر اس گناہ کی معافی مانگتا ہوں جو میں نے جان بوجھ کر یا غلطی سے، چھپ کر یا کھلے عام کیا۔ میں معلوم اور نامعلوم گناہوں سے اس کی طرف توبہ کرتا ہوں۔ بے شک تو پوشیدہ باتوں کو خوب جاننے والا، گناہوں کو بہت بخشنے والا اور عیبوں کو چھپانے والا ہے۔ بلندی اور عظمت والے اللہ کی مدد کے بغیر نہ کوئی طاقت ہے نہ قوت۔",
+    "url": "/kalmas/5",
+    "sourceUrl": "https://alqurancompanion.com/guide-the-6-kalimas-of-islam-text-meaning",
+    "edition": "Traditional educational text; Quranexa meaning translation"
+  },
+  {
+    "id": "kalma:6",
+    "kind": "kalma",
+    "title": "6. Radd al-Kufr · ردِ کفر",
+    "arabic": "اَللّٰهُمَّ إِنِّيْ أَعُوْذُ بِكَ مِنْ أَنْ أُشْرِكَ بِكَ شَيْئًا وَّأَنَا أَعْلَمُ بِهِ، وَأَسْتَغْفِرُكَ لِمَا لَا أَعْلَمُ بِهِ، تُبْتُ عَنْهُ وَتَبَرَّأْتُ مِنَ الْكُفْرِ وَالشِّرْكِ وَالْكِذْبِ وَالْغِيْبَةِ وَالْبِدْعَةِ وَالنَّمِيْمَةِ وَالْفَوَاحِشِ وَالْبُهْتَانِ وَالْمَعَاصِيْ كُلِّهَا، وَأَسْلَمْتُ وَأَقُوْلُ: لَا إِلٰهَ إِلَّا اللهُ مُحَمَّدٌ رَسُوْلُ اللهِ",
+    "transliteration": "Allahumma inni a'udhu bika min an ushrika bika shay'an wa ana a'lamu bihi, wa astaghfiruka lima la a'lamu bihi. Tubtu anhu wa tabarra'tu minal kufri wash-shirki wal-kidhbi wal-ghibati wal-bid'ati wan-namimati wal-fawahishi wal-buhtani wal-ma'asi kulliha. Wa aslamtu wa aqulu: la ilaha illallahu Muhammadur rasulullah.",
+    "en": "O Allah, I seek Your protection from knowingly associating anything with You, and ask Your forgiveness for what I do unknowingly. I repent and disavow disbelief, associating partners with You, lying, backbiting, religious innovation, carrying malicious tales, indecency, slander, and all disobedience. I submit and declare: only Allah deserves worship; Muhammad is Allah’s messenger.",
+    "ur": "اے اللہ، میں جانتے بوجھتے کسی چیز کو تیرا شریک بنانے سے تیری پناہ مانگتا ہوں، اور جس بات کو میں نہیں جانتا اس کی معافی چاہتا ہوں۔ میں اس سے توبہ کرتا ہوں اور کفر، شرک، جھوٹ، غیبت، بدعت، چغلی، بے حیائی، بہتان اور تمام نافرمانیوں سے بیزاری ظاہر کرتا ہوں۔ میں اسلام قبول کرتا ہوں اور کہتا ہوں: اللہ کے سوا کوئی عبادت کے لائق نہیں، محمد اللہ کے رسول ہیں۔",
+    "url": "/kalmas/6",
+    "sourceUrl": "https://alqurancompanion.com/guide-the-6-kalimas-of-islam-text-meaning",
+    "edition": "Traditional educational text; Quranexa meaning translation"
+  }
+]

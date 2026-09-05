@@ -1,0 +1,3 @@
+'use client';
+import {useEffect,useState} from 'react';
+export function Typewriter({text,animate}:{text:string;animate:boolean}){const [count,setCount]=useState(animate?0:text.length);useEffect(()=>{if(!animate||window.matchMedia('(prefers-reduced-motion: reduce)').matches){setCount(text.length);return}let n=0;setCount(0);const timer=setInterval(()=>{n=Math.min(text.length,n+5);setCount(n);if(n>=text.length)clearInterval(timer)},16);return()=>clearInterval(timer)},[text,animate]);return <><span aria-hidden="true">{text.slice(0,count)}{count<text.length&&<span className="typing-cursor"/>}</span><span className="sr-only">{text}</span></>}

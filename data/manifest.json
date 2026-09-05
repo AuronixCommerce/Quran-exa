@@ -1,0 +1,22 @@
+{
+  "quran": {
+    "source": "https://github.com/risan/quran-json",
+    "license": "CC-BY-SA-4.0",
+    "arabic": "Quran Encyclopedia (Uthmani)",
+    "english": "Saheeh International via Tanzil",
+    "urdu": "Abul Ala Maududi via Tanzil",
+    "surahs": 114,
+    "ayahs": 6236,
+    "sha256": "0e5e4d034e76b7204a44185add35640097abb5a3cfd32b15465c652871a093e1"
+  },
+  "hadith": {
+    "source": "https://github.com/fawazahmed0/hadith-api",
+    "records": 13,
+    "grades": "Verbatim from dataset; never inferred"
+  },
+  "metadata": {
+    "source": "https://github.com/quran-center/quran-meta",
+    "license": "MIT",
+    "riwaya": "Hafs"
+  }
+}

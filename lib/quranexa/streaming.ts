@@ -1,0 +1,3 @@
+// Extract only complete JSON objects from the top-level claims array.
+// A partial sentence or an unvalidated reference is never emitted.
+export function completeClaims(text:string):unknown[]{const found=text.match(/"claims"\s*:\s*\[/);if(!found||found.index===undefined)return [];const out:unknown[]=[];let start=-1,depth=0,quoted=false,escaped=false;for(let i=found.index+found[0].length;i<text.length;i++){const c=text[i];if(quoted){if(escaped)escaped=false;else if(c==='\\')escaped=true;else if(c==='"')quoted=false;continue}if(c==='"'){quoted=true;continue}if(c===']'&&depth===0)break;if(c==='{'){if(depth===0)start=i;depth++}else if(c==='}'){depth--;if(depth===0&&start>=0){try{out.push(JSON.parse(text.slice(start,i+1)))}catch{}start=-1}}}return out;}

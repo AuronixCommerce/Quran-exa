@@ -1,0 +1,2 @@
+import {duas,duaTopics} from '@/lib/quranexa/sources';
+export async function GET(req:Request){const q=new URL(req.url).searchParams;const records=duas.filter(s=>!q.get('category')||s.book===q.get('category'));const page=Math.max(1,Math.floor(Number(q.get('page'))||1));return Response.json({categories:duaTopics,page,pages:Math.ceil(records.length/20),sources:records.slice((page-1)*20,page*20)},{headers:{'Cache-Control':'public,max-age=86400'}})}

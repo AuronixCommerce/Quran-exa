@@ -1,0 +1,54 @@
+{
+  "hadith": [
+    {
+      "id": "bukhari",
+      "count": 7583
+    },
+    {
+      "id": "muslim",
+      "count": 7482
+    },
+    {
+      "id": "abudawud",
+      "count": 5274
+    },
+    {
+      "id": "tirmidhi",
+      "count": 3989
+    },
+    {
+      "id": "nasai",
+      "count": 5683
+    },
+    {
+      "id": "ibnmajah",
+      "count": 4342
+    }
+  ],
+  "tafsir": [
+    {
+      "slug": "ar-tafsir-muyassar",
+      "language": "ar",
+      "name": "التفسير الميسر",
+      "source": "https://qul.tarteel.ai/resources/tafsir/38",
+      "count": 6236
+    },
+    {
+      "slug": "en-tafisr-ibn-kathir",
+      "language": "en",
+      "name": "Tafsir Ibn Kathir",
+      "source": "https://qul.tarteel.ai/resources/tafsir/35",
+      "count": 6236
+    },
+    {
+      "slug": "ur-tafseer-ibn-e-kaseer",
+      "language": "ur",
+      "name": "تفسیر ابن کثیر",
+      "source": "https://quran.com/",
+      "count": 6236
+    }
+  ],
+  "translationAlignmentMismatches": [],
+  "indexedSources": 43225,
+  "tokens": 150712
+}

@@ -1,0 +1,2 @@
+import {library} from '@/lib/quranexa/corpus';import {fail} from '@/lib/quranexa/server';
+export async function GET(req:Request){try{const p=new URL(req.url).searchParams;const q=p.get('q')??'',kind=p.get('kind')||'all';if(q.length>200||!['all','quran','hadith','dua','tafsir'].includes(kind))return fail(400);return Response.json({results:await library.search(q,kind)},{headers:{'Cache-Control':'public,max-age=300'}})}catch{return fail();}}

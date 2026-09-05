@@ -1,0 +1,5 @@
+import { sqliteTable, text, integer, primaryKey, index } from 'drizzle-orm/sqlite-core';
+export const savedItems=sqliteTable('saved_items',{userId:text('user_id').notNull(),id:text('id').notNull(),kind:text('kind').notNull(),value:text('value').notNull(),updatedAt:integer('updated_at').notNull()},t=>[primaryKey({columns:[t.userId,t.id]}),index('idx_saved_owner_kind').on(t.userId,t.kind,t.updatedAt)]);
+export const feedback=sqliteTable('feedback',{id:text('id').primaryKey(),userId:text('user_id').notNull(),value:text('value').notNull(),createdAt:integer('created_at').notNull()});
+export const aiLimits=sqliteTable('ai_limits',{key:text('key').primaryKey(),count:integer('count').notNull(),expires:integer('expires').notNull()});
+export const sourceChanges=sqliteTable('source_changes',{id:text('id').primaryKey(),sourceId:text('source_id').notNull(),proposedBy:text('proposed_by').notNull(),reviewedBy:text('reviewed_by'),status:text('status').notNull().default('pending'),payload:text('payload').notNull(),createdAt:integer('created_at').notNull()});

@@ -1,0 +1,2 @@
+const origin='https://quranexa-ai.vs26bf9tsc.chatgpt.site';
+export async function GET(){const maps=['en','ur','ar'].flatMap(l=>['pages','quran','duas','bukhari','muslim','abudawud','tirmidhi','nasai','ibnmajah'].map(k=>`${origin}/sitemaps/${k}-${l}.xml`));return new Response('<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+maps.map(url=>`<sitemap><loc>${url}</loc></sitemap>`).join('')+'</sitemapindex>',{headers:{'Content-Type':'application/xml','Cache-Control':'public,max-age=86400'}})}

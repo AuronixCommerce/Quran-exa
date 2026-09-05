@@ -1,0 +1,2 @@
+import {library} from '@/lib/quranexa/corpus';import {fail} from '@/lib/quranexa/server';
+export async function GET(req:Request){try{const p=new URL(req.url).searchParams;const s=Number(p.get('surah')),a=Number(p.get('ayah')),lang=p.get('language')||'en';if(!Number.isInteger(s)||s<1||s>114||!Number.isInteger(a)||a<1||a>286||!['en','ur','ar'].includes(lang))return fail(400);return Response.json({sources:await library.tafsirs(s,a,lang)},{headers:{'Cache-Control':'public,max-age=86400'}})}catch{return fail();}}
