@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./premium.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://quranexa-ai.vs26bf9tsc.chatgpt.site"),
-  title: "Quranexa AI — Ask. Read. Understand.",
-  description: "Read the Quran in Arabic, English and Urdu. Explore Islamic knowledge through verified sources.",
+  title: "Quran - Exa — Ask. Read. Understand.",
+  description: "Read the Quran in Arabic, English and Urdu. Explore source-grounded Islamic knowledge with Quran - Exa.",
   other: {
-    "codex-preview": "development",
+    "google": "notranslate",
   },
   icons: {
     icon: "/brand/quranexa-logo.png",
@@ -23,7 +23,7 @@ export default async function RootLayout({
   const {locale} = await params;
   const lang = locale && ["en","ur","ar"].includes(locale) ? locale : "en";
   return (
-    <html lang={lang} dir={lang === "en" ? "ltr" : "rtl"}>
+    <html lang={lang} dir={lang === "en" ? "ltr" : "rtl"} suppressHydrationWarning>
       <body className="antialiased">{children}</body>
     </html>
   );
