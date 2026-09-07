@@ -18,6 +18,5 @@ export const firebaseReady=true;
 export const firebaseApp=getApps().length?getApp():initializeApp(config);
 export const auth=getAuth(firebaseApp);
 export const userDb=getDatabase(firebaseApp,config.databaseURL);
-export const chatDb=getDatabase(firebaseApp,process.env.NEXT_PUBLIC_FIREBASE_CHAT_DATABASE_URL||'https://quranexachats-default-rtdb.firebaseio.com/');
 export const googleProvider=new GoogleAuthProvider();
 googleProvider.setCustomParameters({prompt:'select_account'});
