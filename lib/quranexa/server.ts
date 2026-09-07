@@ -1,15 +1,18 @@
 import {headers} from 'next/headers';
 
-/**
- * Quranexa's original ChatGPT Sites build used a Cloudflare D1 binding.
- * Vercel does not provide that binding. Keep the database boundary explicit so
- * unauthenticated reading/chat paths can run normally while account-only
- * persistence fails closed until a persistent database is configured.
- */
 export function database(): any {
-  throw new Error('Quranexa persistent database is not configured on this deployment.');
+  throw new Error('Quran - Exa persistent legacy database is not configured on this deployment.');
 }
 
-export async function identity(){return (await headers()).get('oai-authenticated-user-id');}
+export async function identity(req?:Request){
+  if(req){
+    const token=req.headers.get('authorization')?.replace(/^Bearer\s+/i,'').trim();
+    const key=process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+    if(token&&key){
+      try{const response=await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${encodeURIComponent(key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({idToken:token}),cache:'no-store'});if(response.ok){const data=await response.json();const user=data.users?.[0];if(user?.localId)return String(user.localId)}}catch{}
+    }
+  }
+  return (await headers()).get('oai-authenticated-user-id');
+}
 export function sameOrigin(req:Request){const origin=req.headers.get('origin');return !origin||origin===new URL(req.url).origin;}
-export function fail(status=500){return Response.json({error:'Quranexa couldn’t complete this request. Please try again.'},{status});}
+export function fail(status=500){return Response.json({error:'Quran - Exa couldn’t complete this request. Please try again.'},{status});}
