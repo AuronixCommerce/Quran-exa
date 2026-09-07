@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./base.css";
 import "./ios-liquid.css";
+import "./ios-liquid-fixes.css";
 
 export const metadata: Metadata = {
   title: "Quran - Exa — Ask. Read. Understand.",
