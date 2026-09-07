@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./base.css";
 import "./premium.css";
+import "./chat-reference.css";
 
 export const metadata: Metadata = {
   title: "Quran - Exa — Ask. Read. Understand.",
