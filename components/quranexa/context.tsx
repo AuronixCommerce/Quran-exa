@@ -2,11 +2,11 @@
 
 import {createContext,useContext,useEffect,useMemo,useState,ReactNode} from 'react';
 import {onAuthStateChanged,signOut,User} from 'firebase/auth';
-import {get,onValue,ref,remove as removeValue,set,update} from 'firebase/database';
+import {onValue,ref,remove as removeValue,set,update} from 'firebase/database';
 import {toast,Toaster} from 'sonner';
 import {Locale,Preferences,Saved} from '@/lib/quranexa/types';
 import {dictionary} from '@/lib/quranexa/i18n';
-import {auth,chatDb,firebaseReady,userDb} from '@/lib/quranexa/firebase';
+import {auth,firebaseReady,userDb} from '@/lib/quranexa/firebase';
 
 const defaults:Preferences={translation:'en',aiLanguage:'en',fontSize:34,translationSize:17,theme:'light',readingMode:'both',arabicFont:'serif',name:''};
 const LOCAL_KEY='quran-exa:guest-state:v2';
@@ -43,23 +43,31 @@ export function Provider({locale,children}:{locale:Locale;user?:boolean;children
 
   useEffect(()=>{setGuestItems(localItems());const cached=localItems().find(x=>x.kind==='preferences');if(cached)setPrefs({...defaults,...cached.value});},[]);
 
+  async function chatRequest(current:User,init?:RequestInit){
+    const token=await current.getIdToken();
+    return fetch('/api/chats',{...init,headers:{'Content-Type':'application/json',Authorization:`Bearer ${token}`,...(init?.headers||{})}});
+  }
+
   useEffect(()=>{
     if(!firebaseReady){setReady(true);return;}
-    let stopState=()=>{},stopChats=()=>{},stopProfile=()=>{};
+    let stopState=()=>{},stopProfile=()=>{};
+    let cancelled=false;
     const stopAuth=onAuthStateChanged(auth,async current=>{
-      stopState();stopChats();stopProfile();setUser(current);setMainItems([]);setChatItems([]);setProfilePhoto('');
+      stopState();stopProfile();setUser(current);setMainItems([]);setChatItems([]);setProfilePhoto('');
       if(!current){setGuestItems(localItems());setReady(true);return;}
       const uid=current.uid;
-      const guests=localItems().filter(x=>x.kind==='chat');
-      if(guests.length){
-        try{const root=ref(chatDb,`users/${uid}/chats`),existing=(await get(root)).val()||{},patch:Record<string,unknown>={};for(const item of guests){const key=safe(item.id);if(!existing[key])patch[key]=clean(item)}if(Object.keys(patch).length)await update(root,patch);}catch{}
-      }
+      try{
+        const guests=localItems().filter(x=>x.kind==='chat');
+        if(guests.length)await chatRequest(current,{method:'POST',body:JSON.stringify({items:guests,mergeOnly:true})});
+        const response=await chatRequest(current);
+        if(response.ok){const data=await response.json();if(!cancelled)setChatItems((data.items||[]).sort((a:Saved,b:Saved)=>(b.updatedAt||0)-(a.updatedAt||0)));}
+      }catch{}
+      if(cancelled)return;
       stopState=onValue(ref(userDb,`users/${uid}/state`),snap=>{const value=snap.val()||{};const list=Object.values(value) as Saved[];setMainItems(list.sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0)));const saved=list.find(x=>x.kind==='preferences');if(saved)setPrefs({...defaults,...saved.value});},()=>toast.error(d.tryAgain));
-      stopChats=onValue(ref(chatDb,`users/${uid}/chats`),snap=>{const value=snap.val()||{};const list=Object.values(value) as Saved[];setChatItems(list.sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0)));},()=>toast.error(d.tryAgain));
       stopProfile=onValue(ref(userDb,`users/${uid}/profile`),snap=>{const profile=snap.val()||{};setProfilePhoto(profile.photoDataUrl||'');if(profile.name)setPrefs(p=>({...p,name:profile.name}));});
       setReady(true);
     });
-    return()=>{stopAuth();stopState();stopChats();stopProfile()};
+    return()=>{cancelled=true;stopAuth();stopState();stopProfile()};
   },[d.tryAgain]);
 
   useEffect(()=>{document.documentElement.lang=locale;document.documentElement.dir=locale==='en'?'ltr':'rtl';document.documentElement.classList.toggle('dark',prefs.theme==='dark');},[locale,prefs.theme]);
@@ -67,12 +75,31 @@ export function Provider({locale,children}:{locale:Locale;user?:boolean;children
   async function save(id:string,kind:string,value:any){
     const item:Saved={id,kind,value:clean(value),updatedAt:Date.now()};
     if(!user){const next=[item,...localItems().filter(x=>x.id!==id)];writeLocal(next);setGuestItems(next);return true;}
-    try{const db=kind==='chat'?chatDb:userDb;const path=kind==='chat'?`users/${user.uid}/chats/${safe(id)}`:`users/${user.uid}/state/${safe(id)}`;await set(ref(db,path),item);return true}catch{toast.error(d.tryAgain);return false}
+    try{
+      if(kind==='chat'){
+        const response=await chatRequest(user,{method:'POST',body:JSON.stringify({item})});
+        if(!response.ok)throw new Error('chat');
+        setChatItems(prev=>[item,...prev.filter(x=>x.id!==id)].sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0)));
+      }else{
+        await set(ref(userDb,`users/${user.uid}/state/${safe(id)}`),item);
+      }
+      return true;
+    }catch{toast.error(d.tryAgain);return false}
   }
 
   async function remove(id:string){
     if(!user){const next=localItems().filter(x=>x.id!==id);writeLocal(next);setGuestItems(next);return true;}
-    try{const isChat=id.startsWith('chat:');await removeValue(ref(isChat?chatDb:userDb,isChat?`users/${user.uid}/chats/${safe(id)}`:`users/${user.uid}/state/${safe(id)}`));return true}catch{toast.error(d.tryAgain);return false}
+    try{
+      const isChat=id.startsWith('chat:');
+      if(isChat){
+        const response=await chatRequest(user,{method:'DELETE',body:JSON.stringify({id})});
+        if(!response.ok)throw new Error('chat');
+        setChatItems(prev=>prev.filter(x=>x.id!==id));
+      }else{
+        await removeValue(ref(userDb,`users/${user.uid}/state/${safe(id)}`));
+      }
+      return true;
+    }catch{toast.error(d.tryAgain);return false}
   }
 
   async function logout(){await signOut(auth)}
