@@ -1,3 +1,0 @@
-.dock-avatar{width:20px;height:20px;border-radius:7px;object-fit:cover;border:1px solid var(--ios-line)}
-.desktop-protected-action{display:grid!important}
-@media(max-width:760px){.desktop-protected-action{display:none!important}.mobile-sheet{background:var(--ios-glass-strong)!important;backdrop-filter:blur(32px) saturate(1.55)!important;-webkit-backdrop-filter:blur(32px) saturate(1.55)!important}.mobile-sheet nav{display:grid!important;gap:4px!important;margin-top:18px!important}.mobile-sheet nav a{min-height:48px!important;padding:0 13px!important;border-radius:14px!important;display:flex!important;align-items:center!important;gap:9px!important;color:var(--ios-text)!important}.mobile-sheet nav a:hover{background:var(--ios-surface-2)!important}}
