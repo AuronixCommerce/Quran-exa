@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 import {toast} from 'sonner';
 import {Dialog,DialogContent,DialogHeader,DialogTitle} from '@/components/ui/dialog';
-import {Sheet,SheetContent,SheetTitle,SheetTrigger} from '@/components/ui/sheet';
+import {Sheet,SheetClose,SheetContent,SheetTitle,SheetTrigger} from '@/components/ui/sheet';
 import {DeleteButton} from './account';
 import {Choice} from './controls';
 import {useQ} from './context';
@@ -141,7 +141,7 @@ export function Chat({initialQuestion='',context}:{initialQuestion?:string;conte
 
   async function send(q=question,regenerate=false){
     const trimmed=q.trim();
-    if(!trimmed||busy)return;
+    if(trimmed.length<2||busy)return;
     if(!signedIn&&remaining===null){toast(d.loading);return;}
     if(!signedIn&&remaining===0){toast(d.quotaReached);return;}
 
@@ -311,7 +311,7 @@ export function Chat({initialQuestion='',context}:{initialQuestion?:string;conte
               </div>
               {chats.map(chat=>(
                 <div className="chat-history-item" key={chat.id}>
-                  <button onClick={()=>loadChat(chat)}>{chat.value.title}</button>
+                  <SheetClose asChild><button disabled={busy} onClick={()=>loadChat(chat)}>{chat.value.title}</button></SheetClose>
                   <button className="icon-button" aria-label={d.rename} onClick={()=>{setRename(chat);setNewName(chat.value.title)}}>
                     <Pencil size={14}/>
                   </button>
@@ -348,7 +348,7 @@ export function Chat({initialQuestion='',context}:{initialQuestion?:string;conte
         </div>
       )}
 
-      <div className="chat-turns">
+      <div className="chat-turns" aria-busy={busy}>
         {turns.map((turn,index)=>(
           <div className="chat-turn" key={`${index}-${turn.question}`}>
             <div className="user-message" dir="auto">{turn.question}</div>
@@ -452,13 +452,15 @@ export function Chat({initialQuestion='',context}:{initialQuestion?:string;conte
         <form className="composer" onSubmit={event=>{event.preventDefault();send()}}>
           <textarea
             maxLength={1800}
+            minLength={2}
             rows={2}
+            dir="auto"
             value={question}
             onChange={event=>setQuestion(event.target.value)}
             aria-label={d.question}
             placeholder={d.askHint}
             onKeyDown={event=>{
-              if(event.key==='Enter'&&!event.shiftKey){
+              if(event.key==='Enter'&&!event.shiftKey&&!event.nativeEvent.isComposing){
                 event.preventDefault();
                 send();
               }
@@ -492,7 +494,7 @@ export function Chat({initialQuestion='',context}:{initialQuestion?:string;conte
                 <Square size={17}/>
               </button>
             ):(
-              <button type="submit" className="send-button" disabled={!question.trim()} aria-label={d.send}>
+              <button type="submit" className="send-button" disabled={question.trim().length<2} aria-label={d.send}>
                 <ArrowUp size={21}/>
               </button>
             )}

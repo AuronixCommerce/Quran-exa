@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
-import {BookOpen,Search,Globe2,UserRound,Menu,Bookmark,History,Settings,Sparkles,LockKeyhole,House} from 'lucide-react';
+import {BookOpen,Search,Globe2,UserRound,Menu,Bookmark,History,Sparkles,LockKeyhole,House} from 'lucide-react';
 import {Sheet,SheetTrigger,SheetContent,SheetTitle,SheetClose} from '@/components/ui/sheet';
 import {useQ} from './context';
 import {Choice} from './controls';
@@ -17,6 +17,7 @@ export function Shell({children}:{children:React.ReactNode}){
   const protectedIcon=(kind:'bookmarks'|'history')=>!signedIn?<LockKeyhole size={17}/>:kind==='bookmarks'?<Bookmark size={17}/>:<History size={17}/>;
 
   return <>
+    <a className="skip-link" href="#main-content">{locale==='en'?'Skip to content':locale==='ur'?'مواد پر جائیں':'انتقل إلى المحتوى'}</a>
     <header className="site-header">
       <div className="header-inner">
         <Link href={'/'+locale} className="brand" aria-label="Quran - Exa home">
@@ -24,7 +25,7 @@ export function Shell({children}:{children:React.ReactNode}){
         </Link>
 
         <nav className="desktop-nav" aria-label={d.home}>
-          {nav.map(([p,t])=><Link key={p} href={`/${locale}/${p}`} className={isActive(p)?'active':''}>{p==='ask'&&<Sparkles size={14}/>}<span>{t}</span></Link>)}
+          {nav.map(([p,t])=><Link key={p} href={`/${locale}/${p}`} aria-current={isActive(p)?'page':undefined} className={isActive(p)?'active':''}>{p==='ask'&&<Sparkles size={14}/>}<span>{t}</span></Link>)}
         </nav>
 
         <div className="header-actions">
@@ -46,7 +47,7 @@ export function Shell({children}:{children:React.ReactNode}){
       </div>
     </header>
 
-    <main className="main-container">{children}</main>
+    <main id="main-content" className="main-container" tabIndex={-1}>{children}</main>
 
     <nav className="mobile-dock" aria-label={d.home}>
       <Link href={`/${locale}`} className={isActive('')?'active':''}><House/><span>{d.home}</span></Link>
